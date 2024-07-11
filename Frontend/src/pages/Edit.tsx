@@ -9,15 +9,17 @@ import {
   Input,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 type Props = {};
 
-const Create = (props: Props) => {
+const Edit = (props: Props) => {
   const [formData, setFormData] = useState({
     exercise: "",
     weight: 1,
   });
+  
+  const { id } = useParams<{ id: string }>();
 
   const disabled = formData.exercise === "";
 
@@ -32,23 +34,23 @@ const Create = (props: Props) => {
     }));
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      fetch("http://localhost:8080/gym/records", {
-        method: "POST",
+      fetch(`http://localhost:8080/gym/records/${id}`, {
+        method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           exercise: formData.exercise,
           weight: formData.weight,
         }),
-      }).then((response) => {
-        if (response.status == 201) {
-          return response.json();
-        }
-        return null;
-      });
-      console.log("Added successfully");
+      })
+        .then((response) => {
+          if (response.status == 200) {
+            return response.json();
+          }
+          return null;
+        })
     } catch (error) {
       console.log(error);
     }
@@ -123,4 +125,4 @@ const Create = (props: Props) => {
   );
 };
 
-export default Create;
+export default Edit;

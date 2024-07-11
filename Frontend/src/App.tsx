@@ -1,9 +1,11 @@
-import { ChakraProvider } from '@chakra-ui/react'
-import theme from './utils/theme'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Create from './pages/Create'
-import Delete from './pages/Delete';
-import Update from './pages/Update';
+import { ChakraProvider } from "@chakra-ui/react";
+import theme from "./utils/theme";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Create from "./pages/Create";
+import Edit from "./pages/Edit";
+import Show from "./pages/Show";
+import { useEffect, useState } from "react";
+import { GymRecord } from "./utils/GymRecords";
 
 function App() {
 
@@ -12,12 +14,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Create />} />
-          <Route path="/delete" element={<Delete />} />
-          <Route path="/update" element={<Update />} />
+          <Route path="/show" element={<Show />} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Routes>
       </BrowserRouter>
     </ChakraProvider>
   );
 }
 
-export default App
+export default App;
