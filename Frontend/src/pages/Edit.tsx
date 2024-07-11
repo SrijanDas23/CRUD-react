@@ -11,9 +11,8 @@ import {
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-type Props = {};
 
-const Edit = (props: Props) => {
+const Edit = () => {
   const [formData, setFormData] = useState({
     exercise: "",
     weight: 1,

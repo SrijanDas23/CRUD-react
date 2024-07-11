@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  Center,
-  Container,
   Flex,
   Heading,
-  IconButton,
   Text,
   Tooltip,
   VStack,
@@ -19,7 +16,6 @@ import { EditIcon } from "@chakra-ui/icons";
 
 const Show = () => {
   const [records, setRecords] = useState<GymRecord[]>([]);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -42,7 +38,6 @@ const Show = () => {
       } catch (error: any) {
         if (error.name !== "AbortError") {
           console.error("Fetch error: ", error);
-          setError(error.message);
         }
       }
     };
@@ -53,11 +48,6 @@ const Show = () => {
       controller.abort();
     };
   }, []);
-
-  const handleEdit = (id: number) => {
-    // Handle edit functionality here
-    console.log(`Edit exercise with ID: ${id}`);
-  };
 
   const handleDelete = (id: number) => {
     try {

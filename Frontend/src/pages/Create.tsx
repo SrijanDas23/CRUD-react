@@ -11,9 +11,9 @@ import {
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-type Props = {};
 
-const Create = (props: Props) => {
+
+const Create = () => {
   const [formData, setFormData] = useState({
     exercise: "",
     weight: 1,
